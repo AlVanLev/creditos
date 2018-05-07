@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Credits</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Credito</th>
+      <th>Saldoinicial</th>
+      <th>Tasainteres</th>
+      <th>Plazo</th>
+      <th>Fechainicio</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @credits.each do |credit| %>
+      <tr>
+        <td><%= credit.credito %></td>
+        <td><%= credit.saldoInicial %></td>
+        <td><%= credit.tasaInteres %></td>
+        <td><%= credit.plazo %></td>
+        <td><%= credit.fechaInicio %></td>
+        <td><%= credit.user_id %></td>
+        <td><%= link_to 'Show', credit %></td>
+        <td><%= link_to 'Edit', edit_credit_path(credit) %></td>
+        <td><%= link_to 'Destroy', credit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Credit', new_credit_path %>

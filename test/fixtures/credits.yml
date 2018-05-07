@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  credito: MyString
+  saldoInicial: 1
+  tasaInteres: 1
+  plazo: 2018-05-06
+  fechaInicio: 2018-05-06
+  user_id: 1
+
+two:
+  credito: MyString
+  saldoInicial: 1
+  tasaInteres: 1
+  plazo: 2018-05-06
+  fechaInicio: 2018-05-06
+  user_id: 1
