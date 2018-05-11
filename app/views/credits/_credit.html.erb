@@ -10,7 +10,7 @@
     <th>Pago Amortizacion</th>
     <th>Saldo Final</th>
   </tr>
-  <% for i in 0..credit.plazo do%>
+  <% for i in 1..credit.plazo do%>
   <tr>
     <th><%=i%></th>
     <th><%=credit.fechaInicio>>i%></th>
@@ -22,6 +22,4 @@
   </tr>
   <%end%>
 </table>
-
-
 </li>

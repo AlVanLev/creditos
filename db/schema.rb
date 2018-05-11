@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180510173448) do
+ActiveRecord::Schema.define(version: 20180511154959) do
 
   create_table "credits", force: :cascade do |t|
     t.string   "credito"
@@ -27,7 +27,6 @@ ActiveRecord::Schema.define(version: 20180510173448) do
   create_table "users", force: :cascade do |t|
     t.string   "nombre"
     t.string   "usuario"
-    t.string   "contrasena"
     t.string   "email"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
