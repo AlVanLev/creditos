@@ -1,3 +1,27 @@
 <li>
-  <span class="content"><%= credit.credito %></span>
+  <h4><span class="content"><%= credit.credito %></span></h4>
+  <table class="table table-bordered">
+  <tr>
+    <th>Periodo</th>
+    <th>Fecha</th>
+    <th>Saldo Inicial</th>
+    <th>Pago Capital</th>
+    <th>Pago Interes (<%=credit.tasaInteres%>% Anual)</th>
+    <th>Pago Amortizacion</th>
+    <th>Saldo Final</th>
+  </tr>
+  <% for i in 0..credit.plazo do%>
+  <tr>
+    <th><%=i%></th>
+    <th><%=credit.fechaInicio>>i%></th>
+    <th><%=credit.saldoInicial%></th>
+    <th><%=credit.saldoInicial/credit.plazo-credit.saldoInicial*credit.tasaInteres/1200%></th>
+    <th><%=credit.saldoInicial*credit.tasaInteres/1200%></th>
+    <th><%=credit.saldoInicial/credit.plazo%></th>
+    <th><%=credit.saldoInicial-i*credit.saldoInicial/credit.plazo%></th>
+  </tr>
+  <%end%>
+</table>
+
+
 </li>
