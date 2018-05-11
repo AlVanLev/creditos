@@ -4,7 +4,7 @@ class CreateCredits < ActiveRecord::Migration
       t.string :credito
       t.integer :saldoInicial
       t.integer :tasaInteres
-      t.date :plazo
+      t.integer :plazo
       t.date :fechaInicio
       t.integer :user_id
 
