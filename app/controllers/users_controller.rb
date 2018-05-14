@@ -1,10 +1,11 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-
+  before_action :signed_in_user, only: [:edit, :update]
+  before_action :correct_user, only:[:edit, :update]
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    @users = User.paginate(page: params[:page])
   end
 
   # GET /users/1
@@ -21,7 +22,6 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    @user=User.find(params[:id])
   end
 
   # POST /users
@@ -47,6 +47,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
+        flash[:success]="perfil actualizado"
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
@@ -75,5 +76,15 @@ class UsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:nombre, :usuario, :password, :password_confirmation, :email)
+    end
+
+    def signed_in_user
+      store_location
+      redirect_to signin_url, notice: "Inicie sesion primero"
+    end
+
+    def correct_user
+      @user= User.find(params[:id])
+      redirect_to(root_url) unless current_user?(@user)
     end
 end

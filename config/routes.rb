@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   match '/contact', to: 'static_pages#contact', via: 'get'
   match '/signup', to: 'users#index', via: 'get'
   match '/signin', to: 'sessions#new', via: 'get'
-  match '/signout', to: 'sessions#destrow', via: 'delete'
+  match '/signout', to: 'sessions#destroy', via: 'delete'
 
   resources :credits
   resources :users
