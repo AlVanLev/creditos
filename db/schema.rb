@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180514161225) do
+ActiveRecord::Schema.define(version: 20180514205458) do
 
   create_table "credits", force: :cascade do |t|
     t.string   "credito"
@@ -28,10 +28,11 @@ ActiveRecord::Schema.define(version: 20180514161225) do
     t.string   "nombre"
     t.string   "usuario"
     t.string   "email"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.string   "password_digest"
     t.string   "remember_token"
+    t.boolean  "admin",           default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
