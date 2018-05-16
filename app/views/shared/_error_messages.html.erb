@@ -1,11 +1,11 @@
-<% if @user.errors.any? %>
+<% if object.errors.any? %>
   <div id="error_explanation">
     <div class="alert alert-error">
       <h3>Error: el formulario debe cumplir con lo siguiente:</h3>
     </div>
 
     <ul>
-    <% @user.errors.full_messages.each do |message| %>
+    <% object.errors.full_messages.each do |message| %>
       <li><%= message %></li>
     <% end %>
     </ul>

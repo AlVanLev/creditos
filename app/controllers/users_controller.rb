@@ -79,11 +79,6 @@ class UsersController < ApplicationController
       params.require(:user).permit(:nombre, :usuario, :password, :password_confirmation, :email)
     end
 
-    def signed_in_user
-      store_location
-      redirect_to signin_url, notice: "Inicie sesion primero"
-    end
-
     def correct_user
       @user= User.find(params[:id])
       redirect_to(root_url) unless current_user?(@user)
