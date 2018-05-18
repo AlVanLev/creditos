@@ -20,7 +20,9 @@
     <th>Pago Amortizacion</th>
     <th>Saldo Final</th>
   </tr>
-  <%saldoInicial=credit.saldoInicial
+  <%
+  amortizacion=[]
+  saldoInicial=credit.saldoInicial
   fechaInicio=credit.fechaInicio
   plazo=credit.plazo
   tasaInteres=credit.tasaInteres/12.to_f
@@ -35,7 +37,13 @@
     <th><%=(pagoTotal=pagoCapital+pagoInteres).round(2)%></th>
     <th><%=(saldoFinal=saldoInicial-i*saldoInicial/plazo).round(2)%></th>
   </tr>
+  <%-#amortizacion.push(fechaInicio)%>
+  <%-#amortizacion.push(pagoInteres)%>
+  <%-#amortizacion.push(pagoCapital)%>
+  <%-#amortizacion.push(pagoTotal)%>
+  <%amortizacion.push(saldoFinal)%>
   <%end%>
+  <%@amortizacion.push(amortizacion)%>
 </table>
 </div>
 </li>

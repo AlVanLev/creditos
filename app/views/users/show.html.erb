@@ -12,12 +12,26 @@
 </div>
 <div class="span8">
   <%  if @user.credits.any?%>
-  <%=amortizacion=@credits.ids%>
+  <%@amortizacion=[]%>
     <h3 class="span2">Creditos</h3>
     <%= link_to 'Nuevo Credito', new_credit_path, class: "btn btn-primary"%>
     <p class="span12"></p>
     <ol class="credits">
       <%= render @credits %>
+      <%saldoFinal=0.0%>
+      <%saldoFinal1=0.0%>
+      <%saldoFinal2=0.0%>
+      <%saldoFinal3=0.0%>
+      <%@amortizacion.length.times do |i| %>
+        <%saldoFinal=saldoFinal+@amortizacion[i][0]%>
+        <%saldoFinal1=saldoFinal1+@amortizacion[i][1]%>
+        <%saldoFinal2=saldoFinal2+@amortizacion[i][2]%>
+        <%saldoFinal3=saldoFinal3+@amortizacion[i][3]%>
+      <%end%>
+      <%=saldoFinal%>
+      <%=saldoFinal1%>
+      <%=saldoFinal2%>
+      <%=saldoFinal3%>
     </ol>
   <%else%>
   <%= link_to 'Nuevo Credito', new_credit_path, class: "btn btn-primary span10"%>
