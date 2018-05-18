@@ -18,6 +18,7 @@ class UsersController < ApplicationController
 
   # GET /users/new
   def new
+    redirect_to(users_path) unless !signed_in?
     @user = User.new
   end
 

@@ -1,5 +1,6 @@
 class StaticPagesController < ApplicationController
   def home
+    redirect_to(users_path) unless !signed_in?
   end
 
   def help

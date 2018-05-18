@@ -5,12 +5,14 @@ class CreditsController < ApplicationController
   # GET /credits
   # GET /credits.json
   def index
+    redirect_to(current_user)
     @credits = Credit.all
   end
 
   # GET /credits/1
   # GET /credits/1.json
   def show
+    redirect_to(current_user)
   end
 
   # GET /credits/new
@@ -74,7 +76,7 @@ class CreditsController < ApplicationController
     end
 
     def correct_user
-      @credit= current_user.credit.find_by(id: params[:id])
+      @credit= current_user.credits.find_by(id: params[:id])
       redirect_to root_url if @credit.nil?
     end
 end

@@ -1,25 +1,41 @@
 <li>
-  <h4><span class="content"><%= credit.credito %></span></h4>
-  <table class="table table-bordered">
+  <h4>
+    <span class="content span2">
+    <%= credit.credito %>
+    <small>
+    Saldo:<%=credit.saldoInicial%>
+    </small>
+  </span>
+    <%= link_to 'Editar', edit_credit_path(credit), class: "btn btn-success" %>
+    <%= link_to 'Eliminar', credit, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+  </h4>
+  <button data-toggle="collapse" data-target="#amortizacion<%=credit.id%>" class="span10 btn-info">Mostrar amortizacion</button>
+  <div id="amortizacion<%=credit.id%>" class="collapse span10">
+  <table class="table table-hover">
   <tr>
     <th>Periodo</th>
     <th>Fecha</th>
-    <th>Saldo Inicial</th>
-    <th>Pago Capital</th>
     <th>Pago Interes (<%=credit.tasaInteres%>% Anual)</th>
+    <th>Pago Capital</th>
     <th>Pago Amortizacion</th>
     <th>Saldo Final</th>
   </tr>
-  <% for i in 1..credit.plazo do%>
+  <%saldoInicial=credit.saldoInicial
+  fechaInicio=credit.fechaInicio
+  plazo=credit.plazo
+  tasaInteres=credit.tasaInteres/12.to_f
+  interes=tasaInteres*plazo+100
+  saldoInteres=saldoInicial*100/interes%>
+  <% for i in 1..plazo do%>
   <tr>
     <th><%=i%></th>
-    <th><%=credit.fechaInicio>>i%></th>
-    <th><%=credit.saldoInicial%></th>
-    <th><%=credit.saldoInicial/credit.plazo-credit.saldoInicial*credit.tasaInteres/1200%></th>
-    <th><%=credit.saldoInicial*credit.tasaInteres/1200%></th>
-    <th><%=credit.saldoInicial/credit.plazo%></th>
-    <th><%=credit.saldoInicial-i*credit.saldoInicial/credit.plazo%></th>
+    <th><%=fechaInicio>>i%></th>
+    <th><%=(pagoInteres=saldoInteres/plazo).round(2)%></th>
+    <th><%=(pagoCapital=saldoInicial/plazo-pagoInteres).round(2)%></th>
+    <th><%=(pagoTotal=pagoCapital+pagoInteres).round(2)%></th>
+    <th><%=(saldoFinal=saldoInicial-i*saldoInicial/plazo).round(2)%></th>
   </tr>
   <%end%>
 </table>
+</div>
 </li>
