@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
+    redirect_to(current_user) unless !signed_in?
     @users = User.paginate(page: params[:page])
   end
 

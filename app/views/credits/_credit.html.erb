@@ -27,7 +27,14 @@
   tasaInteres=credit.tasaInteres/12.to_f
   interes=tasaInteres*plazo+100
   saldoInteres=saldoInicial*100/interes%>
-  <% for i in 1..plazo do%>
+  <% for i in 0..plazo do%>
+  <%if i == 0%>
+  <%fecha=fechaInicio>>i%>
+  <%(pagoInteres=0)%>
+  <%(pagoCapital=0)%>
+  <%(pagoTotal=0)%>
+  <%(saldoFinal=saldoInicial-i*saldoInicial/plazo).round(2)%>
+  <%else%>
   <tr>
     <th><%=i%></th>
     <th><%=fecha=fechaInicio>>i%></th>
@@ -36,6 +43,7 @@
     <th><%=(pagoTotal=pagoCapital+pagoInteres).round(2)%></th>
     <th><%=(saldoFinal=saldoInicial-i*saldoInicial/plazo).round(2)%></th>
   </tr>
+  <%end%>
   <%@amortizacion.push([fecha,pagoInteres,pagoCapital,pagoTotal,saldoFinal])%>
   <%end%>
 </table>
