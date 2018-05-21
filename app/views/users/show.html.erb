@@ -12,28 +12,62 @@
 </div>
 <div class="span8">
   <%  if @user.credits.any?%>
-  <%@amortizacion=[]%>
     <h3 class="span2">Creditos</h3>
     <%= link_to 'Nuevo Credito', new_credit_path, class: "btn btn-primary"%>
     <p class="span12"></p>
     <ol class="credits">
+      <%@amortizacion=[]%>
+      <%tA=[]%>
       <%= render @credits %>
-      <%saldoFinal=0.0%>
-      <%saldoFinal1=0.0%>
-      <%saldoFinal2=0.0%>
-      <%saldoFinal3=0.0%>
-      <%@amortizacion.length.times do |i| %>
-        <%saldoFinal=saldoFinal+@amortizacion[i][0]%>
-        <%saldoFinal1=saldoFinal1+@amortizacion[i][1]%>
-        <%saldoFinal2=saldoFinal2+@amortizacion[i][2]%>
-        <%saldoFinal3=saldoFinal3+@amortizacion[i][3]%>
+      <%aSort=@amortizacion.sort_by! {|x,y| x}%>
+      <%for i in 0..aSort.length-1%>
+      <%lI=tA.length-1%>
+        <%if i==0%>
+          <%tA.push(aSort[i]) %>
+        <%else%>
+          <%if aSort[i-1][0].month != aSort[i][0].month%>
+            <%tA.push(aSort[i]) %>
+          <%else%>
+            <%tA[lI][1]=tA[lI][1]+aSort[i][1]%>
+            <%tA[lI][2]=tA[lI][2]+aSort[i][2]%>
+            <%tA[lI][3]=tA[lI][3]+aSort[i][3]%>
+            <%tA[lI][4]=tA[lI][4]+aSort[i][4]%>
+          <%end%>
+        <%end%>
       <%end%>
-      <%=saldoFinal%>
-      <%=saldoFinal1%>
-      <%=saldoFinal2%>
-      <%=saldoFinal3%>
+    <h4>
+        <span class="content span4">
+          Amortizacion General
+        <small>
+          Saldo:
+        </small>
+        </span>
+    </h4>
+      <button id="mostrar" data-toggle="collapse" data-target="#amortizacion" class="span10 btn-info">Mostrar amortizacion General</button>
+      <div id="amortizacion" class="collapse span10">
+      <table class="table table-hover">
+      <tr>
+        <th>Periodo</th>
+        <th>Fecha</th>
+        <th>Pago Interes</th>
+        <th>Pago Capital</th>
+        <th>Pago Amortizacion</th>
+        <th>Saldo Final</th>
+      </tr>
+      <% for i in 0..tA.length-1 do%>
+      <tr>
+        <th><%=i+1%></th>
+        <th><%=tA[i][0].month%>-<%=tA[i][0].year%></th>
+        <th><%=tA[i][1]%></th>
+        <th><%=tA[i][2]%></th>
+        <th><%=tA[i][3]%></th>
+        <th><%=tA[i][4]%></th>
+      </tr>
+      <%end%>
+    </table>
+    </div>
     </ol>
   <%else%>
   <%= link_to 'Nuevo Credito', new_credit_path, class: "btn btn-primary span10"%>
-  <% end %>
+  <%end%>
 </div>

@@ -9,7 +9,7 @@
     <%= link_to 'Editar', edit_credit_path(credit), class: "btn btn-success" %>
     <%= link_to 'Eliminar', credit, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
   </h4>
-  <button data-toggle="collapse" data-target="#amortizacion<%=credit.id%>" class="span10 btn-info">Mostrar amortizacion</button>
+  <button id="mostrar" data-toggle="collapse" data-target="#amortizacion<%=credit.id%>" class="span10 btn-info">Mostrar amortizacion</button>
   <div id="amortizacion<%=credit.id%>" class="collapse span10">
   <table class="table table-hover">
   <tr>
@@ -21,7 +21,6 @@
     <th>Saldo Final</th>
   </tr>
   <%
-  amortizacion=[]
   saldoInicial=credit.saldoInicial
   fechaInicio=credit.fechaInicio
   plazo=credit.plazo
@@ -31,19 +30,14 @@
   <% for i in 1..plazo do%>
   <tr>
     <th><%=i%></th>
-    <th><%=fechaInicio>>i%></th>
+    <th><%=fecha=fechaInicio>>i%></th>
     <th><%=(pagoInteres=saldoInteres/plazo).round(2)%></th>
     <th><%=(pagoCapital=saldoInicial/plazo-pagoInteres).round(2)%></th>
     <th><%=(pagoTotal=pagoCapital+pagoInteres).round(2)%></th>
     <th><%=(saldoFinal=saldoInicial-i*saldoInicial/plazo).round(2)%></th>
   </tr>
-  <%-#amortizacion.push(fechaInicio)%>
-  <%-#amortizacion.push(pagoInteres)%>
-  <%-#amortizacion.push(pagoCapital)%>
-  <%-#amortizacion.push(pagoTotal)%>
-  <%amortizacion.push(saldoFinal)%>
+  <%@amortizacion.push([fecha,pagoInteres,pagoCapital,pagoTotal,saldoFinal])%>
   <%end%>
-  <%@amortizacion.push(amortizacion)%>
 </table>
 </div>
 </li>
