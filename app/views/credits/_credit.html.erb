@@ -11,9 +11,9 @@
   <%= link_to 'Update', edit_credit_path(credit), class: "btn btn-edit" %>
   <%= link_to 'Remove', credit, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-delete" %>
   <button id="mostrar" data-toggle="collapse" data-target="#amortizacion<%=credit.id%>" class="span10 btn-show">Show Amortization</button>
-  <div id="amortizacion<%=credit.id%>" class="collapse span10">
+  <div id="amortizacion<%=credit.id%>" class="collapse">
   <table class="table table-hover">
-  <tr id="head">
+  <tr>
     <th>Period</th>
     <th>Date</th>
     <th>Interest (<%=credit.tasaInteres%>% Annual)</th>
