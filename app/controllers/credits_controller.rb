@@ -12,7 +12,7 @@ class CreditsController < ApplicationController
   # GET /credits/1
   # GET /credits/1.json
   def show
-    redirect_to(current_user)
+    @user = current_user
   end
 
   # GET /credits/new
@@ -30,7 +30,6 @@ class CreditsController < ApplicationController
   # POST /credits.json
   def create
     @credit = current_user.credits.build(credit_params)
-
     respond_to do |format|
       if @credit.save
         format.html { redirect_to @credit, notice: 'Credit was successfully created' }

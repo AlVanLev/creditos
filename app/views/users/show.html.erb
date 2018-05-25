@@ -1,8 +1,8 @@
 <% provide(:title,@user.nombre) %>
 <div class="row span8">
   <%  if @user.credits.any?%>
-    <h3 class="span2">Creditos</h3>
-    <%= link_to 'Nuevo Credito', new_credit_path, class: "btn btn-main"%>
+    <h3 class="span2">Credits</h3>
+    <%= link_to 'New Credit', new_credit_path, class: "btn btn-main"%>
     <p class="span12"></p>
     <ol class="credits">
       <%@amortizacion=[]%>
@@ -27,22 +27,22 @@
       <%end%>
     <h4>
         <span class="content span4">
-          Amortizacion General
+          General amortization
         <small>
-          Saldo:
+          Balance:
         </small>
         </span>
     </h4>
-      <button id="mostrar" data-toggle="collapse" data-target="#amortizacion" class="span10 btn-show">Mostrar amortizacion General</button>
+      <button id="mostrar" data-toggle="collapse" data-target="#amortizacion" class="span10 btn-show">Show General Amortization</button>
       <div id="amortizacion" class="collapse span10">
       <table class="table table-hover">
       <tr>
-        <th>Periodo</th>
-        <th>Fecha</th>
-        <th>Pago Interes</th>
-        <th>Pago Capital</th>
-        <th>Pago Amortizacion</th>
-        <th>Saldo Final</th>
+        <th>Period</th>
+        <th>Date</th>
+        <th>Interest</th>
+        <th>Principal</th>
+        <th>Payment</th>
+        <th>Balance</th>
       </tr>
       <% for i in 0..tA.length-1 do%>
       <tr>
@@ -59,6 +59,6 @@
     <%end%>
     </ol>
   <%else%>
-  <%= link_to 'Nuevo Credito', new_credit_path, class: "btn btn-main span10"%>
+  <%= link_to 'New Credit', new_credit_path, class: "btn btn-main span10"%>
   <%end%>
 </div>

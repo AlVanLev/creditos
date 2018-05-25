@@ -3,23 +3,23 @@
     <span class="content span4">
     <%= credit.credito %></br>
     <small>
-    Saldo:<%=credit.saldoInicial%>
+    Balance: <%=credit.saldoInicial%></br>
+    Payments: <%=credit.plazo%>
     </small>
   </span>
   </h4>
-
-  <%= link_to 'Editar', edit_credit_path(credit), class: "btn btn-edit" %>
-  <%= link_to 'Eliminar', credit, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-delete" %>
-  <button id="mostrar" data-toggle="collapse" data-target="#amortizacion<%=credit.id%>" class="span10 btn-show">Mostrar amortizacion</button>
+  <%= link_to 'Update', edit_credit_path(credit), class: "btn btn-edit" %>
+  <%= link_to 'Remove', credit, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-delete" %>
+  <button id="mostrar" data-toggle="collapse" data-target="#amortizacion<%=credit.id%>" class="span10 btn-show">Show Amortization</button>
   <div id="amortizacion<%=credit.id%>" class="collapse span10">
   <table class="table table-hover">
   <tr id="head">
-    <th>Periodo</th>
-    <th>Fecha</th>
-    <th>Pago Interes (<%=credit.tasaInteres%>% Anual)</th>
-    <th>Pago Capital</th>
-    <th>Pago Amortizacion</th>
-    <th>Saldo Final</th>
+    <th>Period</th>
+    <th>Date</th>
+    <th>Interest (<%=credit.tasaInteres%>% Annual)</th>
+    <th>Principal</th>
+    <th>Payment</th>
+    <th>Balance</th>
   </tr>
   <%
   saldoInicial=credit.saldoInicial
@@ -39,13 +39,13 @@
   <tr id="content">
     <td><%=i%></td>
     <td><%=fecha=fechaInicio>>i%></td>
+    <td><%=(pagoCapital=saldoInicial/plazo-saldoInteres/plazo).round(2)%></td>
     <td><%=(pagoInteres=saldoInteres/plazo).round(2)%></td>
-    <td><%=(pagoCapital=saldoInicial/plazo-pagoInteres).round(2)%></td>
     <td><%=(pagoTotal=pagoCapital+pagoInteres).round(2)%></td>
     <td><%=(saldoFinal=saldoInicial-i*saldoInicial/plazo).round(2)%></td>
   </tr>
   <%end%>
-  <%@amortizacion.push([fecha,pagoInteres,pagoCapital,pagoTotal,saldoFinal])%>
+  <%@amortizacion.push([fecha,pagoCapital,pagoInteres,pagoTotal,saldoFinal])%>
   <%end%>
 </table>
 </div>

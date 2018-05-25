@@ -82,10 +82,6 @@ p, a, td, .btn {
   }
 }
 
-.col{
-  color:red;
-}
-
 footer {
   margin-top: 45px;
   padding-top: 5px;
@@ -192,5 +188,12 @@ a{
   }
 }
 th{
+  text-align: center;
   background-color: $lightGray;
+}
+.table th{
+  text-align: center;
+}
+.main{
+  padding-top: 60px;
 }

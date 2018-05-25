@@ -1,32 +1,14 @@
-<p>
-  <strong>Credito:</strong>
-  <%= @credit.credito %>
-</p>
-
-<p>
-  <strong>Saldoinicial:</strong>
-  <%= @credit.saldoInicial %>
-</p>
-
-<p>
-  <strong>Tasainteres:</strong>
-  <%= @credit.tasaInteres %>
-</p>
-
-<p>
-  <strong>Plazo:</strong>
-  <%= @credit.plazo %>
-</p>
-
-<p>
-  <strong>Fechainicio:</strong>
-  <%= @credit.fechaInicio %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @credit.user_id %>
-</p>
-
-<%= link_to 'Edit', edit_credit_path(@credit) %> |
-<%= link_to 'Back', credits_path %>
+<h1>Credit:</h1>
+<div class="row">
+  <%
+  @amortizacion=[]
+  %>
+  <%=
+  render @credit
+  %>
+</div>
+<div class="row">
+  <div class="col-6">
+    <%= link_to 'Back to main page', current_user, class: "btn btn-main span10"%>
+  </div>
+</div>
