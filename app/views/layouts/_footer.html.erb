@@ -1,21 +1,40 @@
 <div class="container-fluid">
-<footer class="footer">
-<div class="row">
-  <div class="span4">
-<%if signed_in?%>
-  <%= link_to "CrediApp", root_path, id: "logo" %>
-<%end%>
-</div>
-<div class="span3">
-  <p class="center">
-    <%= link_to "About",   about_path %>
-  </p>
-</div>
-<div class="span3">
-<p class="center">
-  <%= link_to "Contact", contact_path %>
-</p>
-</div>
-</div>
-</footer>
+  <footer class="footer">
+    <%if signed_in?%>
+
+    <div class="row">
+      <div class="col col-lg-6 col-md-6 col-sm-6 col-xs-6">
+        <p class="center btn-block">
+          <%= link_to "CrediApp", root_path, id: "logo" %>
+        </p>
+      </div>
+
+      <div class="col col-lg-3 col-md-3 col-sm-3 col-xs-3">
+        <p class="center btn-block">
+          <%= link_to "About",   about_path %>
+        </p>
+      </div>
+
+      <div class="col col-lg-3 col-md-3 col-sm-3 col-xs-3">
+        <p class="center btn-block">
+          <%= link_to "Contact", contact_path %>
+        </p>
+      </div>
+    </div>
+
+    <%else%>
+      <div class="row">
+        <div class="col-6">
+          <p class="center">
+            <%= link_to "About",   about_path %>
+          </p>
+        </div>
+        <div class="col-6">
+          <p class="center">
+            <%= link_to "Contact", contact_path %>
+        </p>
+      </div>
+      </div>
+    <%end%>
+  </footer>
 </div>

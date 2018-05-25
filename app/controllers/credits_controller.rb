@@ -18,10 +18,12 @@ class CreditsController < ApplicationController
   # GET /credits/new
   def new
     @credit = Credit.new
+    @user = current_user
   end
 
   # GET /credits/1/edit
   def edit
+    @user = current_user
   end
 
   # POST /credits
