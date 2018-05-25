@@ -6,7 +6,5 @@
   <td><%= link_to 'Show', user %></td>
   <td><%= link_to 'Edit', edit_user_path(user) %></td>
   <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: '¿Esta seguro?' } %></td>
-  <%if current_user.admin? && !current_user?(user)%>
     | <%= link_to "delete", user,method: :delete, data:{confirm: "You sure"}%>
-  <%end%>
 </tr>

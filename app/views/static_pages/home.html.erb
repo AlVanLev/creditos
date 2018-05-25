@@ -1,6 +1,35 @@
 <% provide(:title, 'Home') %>
+<%= render 'sessions/login' %>
+<%= render 'users/signup' %>
 <div class="center hero-unit">
-<h2>La organizacion de tus creditos</h2>
-<h4>Mejora el manejo de tus creditos con un plan de los pagos a realizar cada mes para tus cuentas</h4>
-<%= link_to "Registrate", new_user_path, class: "btn btn-large btn-primary" %>
+<h2>Your online credit manager</h2>
+<p>Improve your credit management with the best plan devised for your monthly payments</p>
+<%= link_to "Sing Up!", new_user_path, class: "btn btn-main", :remote => true, "data-toggle" => "modal", "data-target" => "#signup-modal" %>
+</div>
+<div class="row">
+  <div class="span6">
+    <h3>Manage</h3>
+    <p>
+      handle your credits and loans with an easy to use app
+    </p>
+  </div>
+  <div class="span5">
+    <%=image_tag("managing.png", class: "img-responsive img-rounded")%>
+  </div>
+</div>
+<div class="row">
+  <h3>
+    Schedule
+  </h3>
+  <p>
+    Keep a record of the days on wich you have to pay your credits
+  </p>
+</div>
+<div class="row">
+  <div class="span4">
+    <%=image_tag("credit.png", class: "img-responsive img-rounded")%>
+  </div>
+  <div class="span4">
+    <%=image_tag("calendar.png", class: "img-responsive img-rounded")%>
+  </div>
 </div>

@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
       redirect_back_or user
     else
       flash.now[:error]='Usuario o contraseña incorrectos'
-      render 'new'
+      redirect_to root_url
     end
   end
 

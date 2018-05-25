@@ -1,5 +1,10 @@
 @import "bootstrap";
-$lightGray: #999;
+$lightGray: #f1f2f2;
+$white: #fefefe;
+$blue: #327ccb;
+$yellow: #eec600;
+$red: #ff5f60;
+
 
 @mixin box_sizing {
   -moz-box-sizing: border-box;
@@ -7,11 +12,16 @@ $lightGray: #999;
   box-sizing: border-box;
 }
 html {
+  overflow-x: auto;
   overflow-y: scroll;
+
+
+
 }
 
 body {
   padding-top: 60px;
+  background-color: $white;
 }
 
 section {
@@ -29,45 +39,51 @@ textarea {
   }
 }
 
-
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6, th {
   line-height: 1;
+  font-family: lato, sans-serif;
+  font-style: normal;
+  font-weight: 300;
 }
+
+
 
 h1 {
   font-size: 3em;
-  letter-spacing: -2px;
   margin-bottom: 30px;
   text-align: center;
 }
 
 h2 {
-  font-size: 1.2em;
-  letter-spacing: -1px;
+  font-size: 1.6em;
   margin-bottom: 30px;
   text-align: center;
   font-weight: normal;
-  color: $lightGray;
+  color: #3f3f3f;
 }
 
-p {
-  font-size: 1.1em;
-  line-height: 1.7em;
+p, a, td, .btn {
+  font-size: 1em;
+  line-height: 1.3em;
+  font-family: europa, sans-serif;
+  font-style: normal;
+  font-weight: 300;
 }
 
 #logo {
   float: left;
   margin-right: 10px;
   font-size: 1.7em;
-  color: #fff;
+  color: $blue;
   text-transform: uppercase;
   letter-spacing: -1px;
   padding-top: 9px;
   font-weight: bold;
   line-height: 1;
   &:hover {
-    color: #fff;
+    color: $blue;
     text-decoration: none;
+    background-color: $lightGray;
   }
 }
 
@@ -77,12 +93,6 @@ footer {
   padding-top: 5px;
   border-top: 1px solid #eaeaea;
   color: $lightGray;
-  a {
-    color: #555;
-    &:hover {
-      color: #222;
-    }
-  }
   small {
     float: left;
   }
@@ -98,15 +108,15 @@ footer {
 
 
 aside {
+  float: left;
   section {
-    padding: 10px 0;
-    border-top: 1px solid $grayLighter;
+    padding: 10px;
+    border-top: 1px solid $lightGray;
     &:first-child {
       border: 0;
       padding-top: 0;
     }
     span {
-      display: block;
       margin-bottom: 3px;
       line-height: 1;
     }
@@ -134,4 +144,55 @@ input, textarea, select, .uneditable-input {
 
 input {
   height: auto !important;
+}
+
+.table td{
+  text-align: right;
+}
+.btn{
+  background-image: none;
+  font-weight: normal;
+
+}
+.btn-show{
+  background-color: $blue;
+  color: $lightGray;
+}
+.btn-delete{
+  background-color: $red;
+  color: $lightGray;
+}
+.btn-edit{
+  background-color: $yellow;
+  color: $lightGray;
+}
+.btn-main{
+  background-color: $blue;
+  color: $lightGray;
+}
+.btn:visited{
+  color:$lightGray;
+}
+.navbar-inner{
+  background-color: $lightGray;
+  background-image: none;
+}
+
+.hero-unit{
+  background-color: $lightGray;
+}
+
+.btn:hover{
+  color: #222;
+}
+
+a{
+  color: #555;
+  &:hover {
+    color: #222;
+    background-color: $lightGray;
+  }
+}
+th{
+  background-color: $lightGray;
 }

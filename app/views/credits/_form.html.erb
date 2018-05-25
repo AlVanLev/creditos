@@ -1,33 +1,35 @@
+<div class="container-fluid">
 
 <%= form_for(@credit) do |f| %>
   <div class="row">
-    <div class="span6 offset3">
+    <div class="column">
       <%= render 'shared/error_messages', object:f.object%>
-
-
   <div class="field">
-    <%= f.label :credito %><br>
+    <%= f.label :credito, "Credit Name:" %><br>
     <%= f.text_field :credito %>
   </div>
   <div class="field">
-    <%= f.label :saldoInicial %><br>
+    <%= f.label :saldoInicial, "Initial Balance:" %><br>
     <%= f.number_field :saldoInicial %>
   </div>
   <div class="field">
-    <%= f.label :tasaInteres %><br>
+    <%= f.label :tasaInteres, "Annual Interest rate:" %><br>
     <%= f.number_field :tasaInteres %>
   </div>
   <div class="field">
-    <%= f.label :plazo %><br>
+    <%= f.label :plazo, "Payments:" %><br>
     <%= f.number_field :plazo %>
   </div>
   <div class="field">
-    <%= f.label :fechaInicio %><br>
+    <%= f.label :fechaInicio, "Start Date:" %><br>
     <%= f.date_select :fechaInicio %>
   </div>
   <div class="actions">
-    <%= f.submit "Continuar", class: "btn btn-large btn-primary"%>
+    <p class="center">
+      <%= f.submit btnAction, class: "btn btn-main"%>
+    </p>
   </div>
 <% end %>
+</div>
 </div>
 </div>

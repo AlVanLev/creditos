@@ -1,6 +1,9 @@
-<% provide(:title,'Editar Credito')%>
-<h1>Editar Credito</h1>
+<% provide(:title,'Update Credit')%>
+<div class="span4">
 
-<%= render 'form' %>
-
-<%= link_to 'Regresar', current_user %>
+</div>
+<div class="span4">
+<h1>Update Credit</h1>
+  <%= render 'form',btnAction:"Update" %>
+  <%= link_to 'Back', current_user %>
+</div>

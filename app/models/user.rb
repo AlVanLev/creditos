@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   validates :email, presence:true,format:{with: VALID_EMAIL_REGEX}, uniqueness:{case_sensitive: false}
   validates :usuario, presence: true, length:{maximum:50}
   validates :password, presence: true, length:{minimum:5}
+  validates :terms_of_service, acceptance: { message: 'must be abided' }
   has_secure_password
 
   def User.new_remember_token

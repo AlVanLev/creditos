@@ -1,39 +1,29 @@
 <% provide(:title,@user.nombre) %>
-<p id="notice"><%= notice %></p>
-<div class="row">
-  <aside class="span4">
-    <section>
-      <h1>
-        <%= gravatar_for @user%>
-        <%= @user.nombre %>
-      </h1>
-</section>
-  </aside>
-</div>
-<div class="span8">
+<div class="row span8">
   <%  if @user.credits.any?%>
     <h3 class="span2">Creditos</h3>
-    <%= link_to 'Nuevo Credito', new_credit_path, class: "btn btn-primary"%>
+    <%= link_to 'Nuevo Credito', new_credit_path, class: "btn btn-main"%>
     <p class="span12"></p>
     <ol class="credits">
       <%@amortizacion=[]%>
-      <%tA=[]%>
       <%= render @credits %>
+      <%if @credits.length >1%>
+      <%tA=[]%>
       <%aSort=@amortizacion.sort_by! {|x,y| x}%>
       <%for i in 0..aSort.length-1%>
       <%lI=tA.length-1%>
-        <%if i==0%>
-          <%tA.push(aSort[i]) %>
-        <%else%>
-          <%if aSort[i-1][0].month != aSort[i][0].month%>
-            <%tA.push(aSort[i]) %>
-          <%else%>
-            <%tA[lI][1]=tA[lI][1]+aSort[i][1]%>
-            <%tA[lI][2]=tA[lI][2]+aSort[i][2]%>
-            <%tA[lI][3]=tA[lI][3]+aSort[i][3]%>
-            <%tA[lI][4]=tA[lI][4]+aSort[i][4]%>
-          <%end%>
-        <%end%>
+      <%if i==0%>
+      <%tA.push(aSort[i]) %>
+      <%else%>
+      <%if aSort[i-1][0].month != aSort[i][0].month%>
+      <%tA.push(aSort[i]) %>
+      <%else%>
+      <%tA[lI][1]=(tA[lI][1]+aSort[i][1]).round(2)%>
+      <%tA[lI][2]=(tA[lI][2]+aSort[i][2]).round(2)%>
+      <%tA[lI][3]=(tA[lI][3]+aSort[i][3]).round(2)%>
+      <%tA[lI][4]=(tA[lI][4]+aSort[i][4]).round(2)%>
+      <%end%>
+      <%end%>
       <%end%>
     <h4>
         <span class="content span4">
@@ -43,7 +33,7 @@
         </small>
         </span>
     </h4>
-      <button id="mostrar" data-toggle="collapse" data-target="#amortizacion" class="span10 btn-info">Mostrar amortizacion General</button>
+      <button id="mostrar" data-toggle="collapse" data-target="#amortizacion" class="span10 btn-show">Mostrar amortizacion General</button>
       <div id="amortizacion" class="collapse span10">
       <table class="table table-hover">
       <tr>
@@ -56,18 +46,19 @@
       </tr>
       <% for i in 0..tA.length-1 do%>
       <tr>
-        <th><%=i+1%></th>
-        <th><%=tA[i][0].month%>-<%=tA[i][0].year%></th>
-        <th><%=tA[i][1]%></th>
-        <th><%=tA[i][2]%></th>
-        <th><%=tA[i][3]%></th>
-        <th><%=tA[i][4]%></th>
+        <td><%=i+1%></td>
+        <td><%=tA[i][0].month%>-<%=tA[i][0].year%></td>
+        <td><%=tA[i][1].round(2)%></td>
+        <td><%=tA[i][2].round(2)%></td>
+        <td><%=tA[i][3].round(2)%></td>
+        <td><%=tA[i][4].round(2)%></td>
       </tr>
       <%end%>
     </table>
     </div>
+    <%end%>
     </ol>
   <%else%>
-  <%= link_to 'Nuevo Credito', new_credit_path, class: "btn btn-primary span10"%>
+  <%= link_to 'Nuevo Credito', new_credit_path, class: "btn btn-main span10"%>
   <%end%>
 </div>

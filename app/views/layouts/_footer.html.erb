@@ -1,8 +1,21 @@
+<div class="container-fluid">
 <footer class="footer">
-  <nav>
-    <ul>
-      <li><%= link_to "About",   about_path %></li>
-      <li><%= link_to "Contact", contact_path %></li>
-    </ul>
-  </nav>
+<div class="row">
+  <div class="span4">
+<%if signed_in?%>
+  <%= link_to "CrediApp", root_path, id: "logo" %>
+<%end%>
+</div>
+<div class="span3">
+  <p class="center">
+    <%= link_to "About",   about_path %>
+  </p>
+</div>
+<div class="span3">
+<p class="center">
+  <%= link_to "Contact", contact_path %>
+</p>
+</div>
+</div>
 </footer>
+</div>

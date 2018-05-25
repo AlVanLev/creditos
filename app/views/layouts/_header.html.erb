@@ -1,30 +1,43 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
+<header class="navbar navbar-fixed-top navbar-default">
   <div class="navbar-inner">
-    <div class="container">
-      <%= link_to "sample app", root_path, id: "logo" %>
+    <div class="container-fluid">
+      <%if !signed_in?%>
+      <%= link_to "CrediApp", root_path, id: "logo" %>
+      <%else%>
+      <div class="span3">
+        <aside class="span1">
+          <section>
+            <h1>
+              <%= gravatar_for @user%>
+            </h1>
+          </section>
+        </aside>
+        <p>
+          <%= @user.nombre %>
+        </p>
+      </div>
+      <%end%>
       <nav>
         <ul class="nav pull-right">
-          <%if !signed_in?%>
-          <li><%= link_to "Home",    root_path %></li>
-          <%end%>
-          <li><%= link_to "Ayuda",    help_path %></li>
           <%if signed_in?%>
-          <li><%=link_to "Cuenta",current_user%></li>
+          <li><%=link_to "My Credits",current_user%></li>
           <li id="fat_menu" class="dropdown">
             <a href="#"class="dropdown-toggle" data-toggle="dropdown">
-              Opciones <b class="caret"></b>
+              My Account <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
-              <li><%=link_to "Editar Perfil", edit_user_path(current_user)%></li>
+              <li><%=link_to "Account Settings", edit_user_path(current_user)%></li>
               <li class="divider">
                 <li>
-                  <%=link_to "Cerrar sesion", signout_path, method:"delete"%>
+                  <%=link_to "Sign Out", signout_path, method:"delete"%>
                 </li>
               </li>
             </ul>
           </li>
           <%else%>
-          <li><%= link_to "Iniciar Sesion", signin_path %></li>
+          <li>
+          <%= link_to "Log in", signin_path, :remote => true, "data-toggle" => "modal", "data-target" => "#my-modal" %>
+          </li>
           <%end%>
         </ul>
       </nav>

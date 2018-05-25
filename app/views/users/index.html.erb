@@ -18,12 +18,4 @@
   </tbody>
 </table>
 <%=will_paginate%>
-<div class="span8">
-    <% if @user.credits.any? %>
-      <h3>Creditos</h3>
-      <ol class="credits">
-        <%= render @credits %>
-      </ol>
-    <% end %>
-  </div>
 <br>

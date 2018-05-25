@@ -1,10 +1,7 @@
-<% provide(:title,'Registro')%>
 <%= form_for(@user) do |f| %>
 <div class="row">
-  <div class="span6 offset3">
+  <div class="column">
     <%= render 'shared/error_messages', object:f.object%>
-
-
   <div class="field">
     <%= f.label :nombre %><br>
     <%= f.text_field :nombre %>
@@ -25,8 +22,18 @@
     <%= f.label :email %><br>
     <%= f.text_field :email %>
   </div>
+  <%if btnAction=="Sign Up"%>
+  <div class="field">
+    <p class="center">
+      <%= f.check_box :terms_of_service%>
+      By clickin "<%=btnAction%>" I accept the Terms of Use and Privacy Policy 
+    </p>
+  </div>
+  <%end%>
   <div class="actions">
-    <%= f.submit "Continuar", class: "btn btn-large btn-primary" %>
+    <p class="center">
+      <%= f.submit btnAction, class: "btn btn-main center" %>
+    </p>
   </div>
 <% end %>
 </div>
