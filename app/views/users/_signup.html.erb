@@ -1,9 +1,10 @@
-<div class="modal hide fade" id="signup-modal">
+<div class="modal hide fade toggle" id="signup-modal" >
   <div class="modal-body signup container-fluid">
     <h1>Sign up</h1>
     <%= render 'users/form',btnAction:"Sign Up" %>
     <div class="modal-footer">
       <button aria-hidden="true" class="btn" data-dismiss="modal">Close</button>
+      data-backdrop="false"
     </div>
   </div>
 </div>

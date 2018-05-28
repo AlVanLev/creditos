@@ -18,7 +18,7 @@
     <div class="col-12">
       <%@amortizacion=[]%>
       <ol class="credits">
-          <%= render @credits %>
+          <%= render @credits, btnAction:"rend_Show" %>
       </br>
       <div class="col-12">
         <%if @credits.length >1%>
@@ -39,7 +39,6 @@
         <%end%>
         <%end%>
         <%end%>
-
       </div>
         <h4>
           <span class="content span4">

@@ -12,7 +12,11 @@
     </li>
     </div>
     <div class="col-2 no-padding">
-      <button id="mostrar" data-toggle="collapse" data-target="#amortizacion<%=credit.id%>" class="btn btn-show btn-block">Show Amortization</button>
+    <%if btnAction=="rend_Show"%>
+    <%= link_to 'Details', credit, class: "btn btn-main btn-block" %>
+    <%else%>
+    <button id="mostrar" data-toggle="collapse" data-target="#amortizacion<%=credit.id%>" class="btn btn-show btn-block">Show Amortization</button>
+    <%end%>
     </div>
     <div class="col-1 no-padding">
       <%= link_to 'Update', edit_credit_path(credit), class: "btn btn-edit btn-block" %>
