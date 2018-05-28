@@ -1,36 +1,36 @@
 <%= form_for(@user) do |f| %>
 <div class="row">
-  <div class="column">
+  <div class="col-12">
     <%= render 'shared/error_messages', object:f.object%>
-  <div class="field">
+  <div class="field col-12">
     <%= f.label :nombre %><br>
     <%= f.text_field :nombre %>
   </div>
-  <div class="field">
+  <div class="field col-12">
     <%= f.label :usuario %><br>
     <%= f.text_field :usuario %>
   </div>
-  <div class="field">
+  <div class="field col-12">
     <%= f.label :contraseña %><br>
     <%= f.password_field :password %>
   </div>
-  <div class="field">
+  <div class="field col-12">
     <%= f.label :confirmar_Contraseña %><br>
     <%= f.password_field :password_confirmation %>
   </div>
-  <div class="field">
+  <div class="field col-12">
     <%= f.label :email %><br>
     <%= f.text_field :email %>
   </div>
   <%if btnAction=="Sign Up"%>
-  <div class="field">
+  <div class="field col-12">
     <p class="center">
       <%= f.check_box :terms_of_service%>
-      By clickin "<%=btnAction%>" I accept the Terms of Use and Privacy Policy 
+      By clickin "<%=btnAction%>" I accept the Terms of Use and Privacy Policy
     </p>
   </div>
   <%end%>
-  <div class="actions">
+  <div class="actions col-12">
     <p class="center">
       <%= f.submit btnAction, class: "btn btn-main center" %>
     </p>

@@ -1,64 +1,82 @@
 <% provide(:title,@user.nombre) %>
-<div class="row span8">
-  <%  if @user.credits.any?%>
-    <h3 class="span2">Credits</h3>
-    <%= link_to 'New Credit', new_credit_path, class: "btn btn-main"%>
-    <p class="span12"></p>
-    <ol class="credits">
-      <%@amortizacion=[]%>
-      <%= render @credits %>
-      <%if @credits.length >1%>
-      <%tA=[]%>
-      <%aSort=@amortizacion.sort_by! {|x,y| x}%>
-      <%for i in 0..aSort.length-1%>
-      <%lI=tA.length-1%>
-      <%if i==0%>
-      <%tA.push(aSort[i]) %>
-      <%else%>
-      <%if aSort[i-1][0].month != aSort[i][0].month%>
-      <%tA.push(aSort[i]) %>
-      <%else%>
-      <%tA[lI][1]=(tA[lI][1]+aSort[i][1]).round(2)%>
-      <%tA[lI][2]=(tA[lI][2]+aSort[i][2]).round(2)%>
-      <%tA[lI][3]=(tA[lI][3]+aSort[i][3]).round(2)%>
-      <%tA[lI][4]=(tA[lI][4]+aSort[i][4]).round(2)%>
-      <%end%>
-      <%end%>
-      <%end%>
-    <h4>
-        <span class="content span4">
-          General amortization
-        <small>
-          Balance:
-        </small>
-        </span>
-    </h4>
-      <button id="mostrar" data-toggle="collapse" data-target="#amortizacion" class="span10 btn-show">Show General Amortization</button>
-      <div id="amortizacion" class="collapse span10">
-      <table class="table table-hover">
-      <tr>
-        <th>Period</th>
-        <th>Date</th>
-        <th>Interest</th>
-        <th>Principal</th>
-        <th>Payment</th>
-        <th>Balance</th>
-      </tr>
-      <% for i in 0..tA.length-1 do%>
-      <tr>
-        <td><%=i+1%></td>
-        <td><%=tA[i][0].month%>-<%=tA[i][0].year%></td>
-        <td><%=tA[i][1].round(2)%></td>
-        <td><%=tA[i][2].round(2)%></td>
-        <td><%=tA[i][3].round(2)%></td>
-        <td><%=tA[i][4].round(2)%></td>
-      </tr>
-      <%end%>
-    </table>
+<div class="row">
+  <div class="col-12">
+    <%  if @user.credits.any?%>
+    <div class="col-3 offset-1">
+      <h3 >Credits</h3>
     </div>
+    </br></br>
+    <div class="row">
+      <div class="col-3 offset-6">
+        <%= link_to 'New Credit', new_credit_path, class: "btn btn-main btn-block"%>
+      </div>
+      <div class="col-3">
+        <%= link_to 'Show General Amortization', '#', class: "btn btn-main btn-block"%>
+      </div>
+    </div>
+  </br>
+    <div class="col-12">
+      <%@amortizacion=[]%>
+      <ol class="credits">
+          <%= render @credits %>
+      </br>
+      <div class="col-12">
+        <%if @credits.length >1%>
+        <%tA=[]%>
+        <%aSort=@amortizacion.sort_by! {|x,y| x}%>
+        <%for i in 0..aSort.length-1%>
+        <%lI=tA.length-1%>
+        <%if i==0%>
+        <%tA.push(aSort[i]) %>
+        <%else%>
+        <%if aSort[i-1][0].month != aSort[i][0].month%>
+        <%tA.push(aSort[i]) %>
+        <%else%>
+        <%tA[lI][1]=(tA[lI][1]+aSort[i][1]).round(2)%>
+        <%tA[lI][2]=(tA[lI][2]+aSort[i][2]).round(2)%>
+        <%tA[lI][3]=(tA[lI][3]+aSort[i][3]).round(2)%>
+        <%tA[lI][4]=(tA[lI][4]+aSort[i][4]).round(2)%>
+        <%end%>
+        <%end%>
+        <%end%>
+
+      </div>
+        <h4>
+          <span class="content span4">
+            General amortization
+            <small>
+              Balance:
+            </small>
+          </span>
+        </h4>
+        <button id="mostrar" data-toggle="collapse" data-target="#amortizacion" class="span10 btn-show">Show General Amortization</button>
+        <div id="amortizacion" class="collapse span10">
+          <table class="table table-hover">
+            <tr>
+              <th>Period</th>
+              <th>Date</th>
+              <th>Interest</th>
+              <th>Principal</th>
+              <th>Payment</th>
+              <th>Balance</th>
+            </tr>
+            <% for i in 0..tA.length-1 do%>
+            <tr>
+              <td><%=i+1%></td>
+              <td><%=tA[i][0].month%>-<%=tA[i][0].year%></td>
+              <td><%=tA[i][1].round(2)%></td>
+              <td><%=tA[i][2].round(2)%></td>
+              <td><%=tA[i][3].round(2)%></td>
+              <td><%=tA[i][4].round(2)%></td>
+            </tr>
+            <%end%>
+          </table>
+        </div>
+        <%end%>
+      </ol>
+    </div>
+    <%else%>
+    <%= link_to 'New Credit', new_credit_path, class: "btn-block btn-main"%>
     <%end%>
-    </ol>
-  <%else%>
-  <%= link_to 'New Credit', new_credit_path, class: "btn btn-main span10"%>
-  <%end%>
+  </div>
 </div>

@@ -1,52 +1,65 @@
-<li>
-  <h4>
-    <span class="content span4">
-    <%= credit.credito %></br>
-    <small>
-    Balance: <%=credit.saldoInicial%></br>
-    Payments: <%=credit.plazo%>
-    </small>
-  </span>
-  </h4>
-  <%= link_to 'Update', edit_credit_path(credit), class: "btn btn-edit" %>
-  <%= link_to 'Remove', credit, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-delete" %>
-  <button id="mostrar" data-toggle="collapse" data-target="#amortizacion<%=credit.id%>" class="span10 btn-show">Show Amortization</button>
-  <div id="amortizacion<%=credit.id%>" class="collapse">
-  <table class="table table-hover">
-  <tr>
-    <th>Period</th>
-    <th>Date</th>
-    <th>Interest (<%=credit.tasaInteres%>% Annual)</th>
-    <th>Principal</th>
-    <th>Payment</th>
-    <th>Balance</th>
-  </tr>
-  <%
-  saldoInicial=credit.saldoInicial
-  fechaInicio=credit.fechaInicio
-  plazo=credit.plazo
-  tasaInteres=credit.tasaInteres/12.to_f
-  interes=tasaInteres*plazo+100
-  saldoInteres=saldoInicial*100/interes%>
-  <% for i in 0..plazo do%>
-  <%if i == 0%>
-  <%fecha=fechaInicio>>i%>
-  <%(pagoInteres=0)%>
-  <%(pagoCapital=0)%>
-  <%(pagoTotal=0)%>
-  <%(saldoFinal=saldoInicial-i*saldoInicial/plazo).round(2)%>
-  <%else%>
-  <tr id="content">
-    <td><%=i%></td>
-    <td><%=fecha=fechaInicio>>i%></td>
-    <td><%=(pagoCapital=saldoInicial/plazo-saldoInteres/plazo).round(2)%></td>
-    <td><%=(pagoInteres=saldoInteres/plazo).round(2)%></td>
-    <td><%=(pagoTotal=pagoCapital+pagoInteres).round(2)%></td>
-    <td><%=(saldoFinal=saldoInicial-i*saldoInicial/plazo).round(2)%></td>
-  </tr>
-  <%end%>
-  <%@amortizacion.push([fecha,pagoCapital,pagoInteres,pagoTotal,saldoFinal])%>
-  <%end%>
-</table>
-</div>
-</li>
+  <div class="row">
+    <div class="col-8">
+      <li>
+      <h4 class="center">
+        <span class="content">
+          <%= credit.credito %></br>
+          <small>
+            Balance: <%=credit.saldoInicial%></br>
+          </small>
+        </span>
+      </h4>
+    </li>
+    </div>
+    <div class="col-2 no-padding">
+      <button id="mostrar" data-toggle="collapse" data-target="#amortizacion<%=credit.id%>" class="btn btn-show btn-block">Show Amortization</button>
+    </div>
+    <div class="col-1 no-padding">
+      <%= link_to 'Update', edit_credit_path(credit), class: "btn btn-edit btn-block" %>
+    </div>
+    <div class="col-1 no-padding">
+      <%= link_to 'Remove', credit, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-delete btn-block" %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="container">
+      <div id="amortizacion<%=credit.id%>" class="collapse">
+        <table class="table table-hover">
+          <tr>
+            <th>Period</th>
+            <th>Date</th>
+            <th>Interest (<%=credit.tasaInteres%>% Annual)</th>
+            <th>Principal</th>
+            <th>Payment</th>
+            <th>Balance</th>
+          </tr>
+          <%
+          saldoInicial=credit.saldoInicial
+          fechaInicio=credit.fechaInicio
+          plazo=credit.plazo
+          tasaInteres=credit.tasaInteres/12.to_f
+          interes=tasaInteres*plazo+100
+          saldoInteres=saldoInicial*100/interes%>
+          <% for i in 0..plazo do%>
+          <%if i == 0%>
+          <%fecha=fechaInicio>>i%>
+          <%(pagoInteres=0)%>
+          <%(pagoCapital=0)%>
+          <%(pagoTotal=0)%>
+          <%(saldoFinal=saldoInicial-i*saldoInicial/plazo).round(2)%>
+          <%else%>
+          <tr id="content">
+            <td><%=i%></td>
+            <td><%=fecha=fechaInicio>>i%></td>
+            <td><%=(pagoCapital=saldoInicial/plazo-saldoInteres/plazo).round(2)%></td>
+            <td><%=(pagoInteres=saldoInteres/plazo).round(2)%></td>
+            <td><%=(pagoTotal=pagoCapital+pagoInteres).round(2)%></td>
+            <td><%=(saldoFinal=saldoInicial-i*saldoInicial/plazo).round(2)%></td>
+          </tr>
+          <%end%>
+          <%@amortizacion.push([fecha,pagoCapital,pagoInteres,pagoTotal,saldoFinal])%>
+          <%end%>
+        </table>
+      </div>
+    </div>
+  </div>
