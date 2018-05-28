@@ -1,5 +1,5 @@
-<%= form_for(@user) do |f| %>
 <div class="row">
+<%= form_for(@user) do |f| %>
   <div class="col-12">
     <%= render 'shared/error_messages', object:f.object%>
   <div class="field col-12">
@@ -26,15 +26,15 @@
   <div class="field col-12">
     <p class="center">
       <%= f.check_box :terms_of_service%>
-      By clickin "<%=btnAction%>" I accept the Terms of Use and Privacy Policy
+      By clickin "<%=btnAction%>" I accept the Terms of Use and <%= link_to "Privacy policy", privacy_policy_path %>
     </p>
   </div>
-  <%end%>
+  <% end %>
   <div class="actions col-12">
     <p class="center">
       <%= f.submit btnAction, class: "btn btn-main center" %>
     </p>
   </div>
-<% end %>
 </div>
+<% end %>
 </div>

@@ -1,4 +1,5 @@
 class CreditsController < ApplicationController
+  before_action :get_user
   before_action :set_credit, only: [:show, :edit, :update, :destroy]
   before_action :signed_in_user
   before_action :correct_user, only: :destroy
@@ -12,18 +13,15 @@ class CreditsController < ApplicationController
   # GET /credits/1
   # GET /credits/1.json
   def show
-    @user = current_user
   end
 
   # GET /credits/new
   def new
     @credit = Credit.new
-    @user = current_user
   end
 
   # GET /credits/1/edit
   def edit
-    @user = current_user
   end
 
   # POST /credits
@@ -79,5 +77,9 @@ class CreditsController < ApplicationController
     def correct_user
       @credit= current_user.credits.find_by(id: params[:id])
       redirect_to root_url if @credit.nil?
+    end
+
+    def get_user
+      @user=current_user
     end
 end

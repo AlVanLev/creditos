@@ -1,10 +1,16 @@
 <%provide(:title,"Editar")%>
-<h1>Editar</h1>
-<div class="span4">
-  <%= gravatar_for @user %>
-  <a href="http://gravatar.com/emails" class='btn btn-main'>change</a>
+<div class="row">
+  <div class="col-12">
+    <h1 class="center">Edit</h1>
+  </div>
 </div>
-<div class="span4">
-  <%= render 'form',btnAction:"Change"%>
-  <%= link_to 'Back', current_user %>
+<div class="row">
+  <div class="col-3">
+    <%= gravatar_for @user %>
+    <a href="http://gravatar.com/emails" class='btn btn-main'>change</a>
+  </div>
+  <div class="col-9">
+    <%= render 'form',btnAction:"Change"%>
+    <%= link_to 'Back', current_user %>
+  </div>
 </div>

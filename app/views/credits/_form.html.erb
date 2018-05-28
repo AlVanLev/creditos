@@ -10,15 +10,15 @@
   </div>
   <div class="field col-12">
     <%= f.label :saldoInicial, "Initial Balance:" %><br>
-    <%= f.number_field :saldoInicial %>
+    <%= f.number_field :saldoInicial, { min: '0', step: 'any' } %>
   </div>
   <div class="field col-12">
     <%= f.label :tasaInteres, "Annual Interest rate:" %><br>
-    <%= f.number_field :tasaInteres %>
+    <%= f.number_field :tasaInteres, { min: '0', step: 'any' }%>
   </div>
   <div class="field col-12">
     <%= f.label :plazo, "Payments:" %><br>
-    <%= f.number_field :plazo %>
+    <%= f.number_field :plazo, { min: '0', step: 'any' } %>
   </div>
   <div class="field col-12">
     <%= f.label :fechaInicio, "Start Date:" %><br>
